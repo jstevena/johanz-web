@@ -1,0 +1,531 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Montserrat:wght@600;700&display=swap');
+
+html {
+  font-size: 120%;
+}
+
+:root {
+  --bg: #0c0c0e;
+  --bg-elevated: #17171a;
+  --text: #f3f1ec;
+  --subtext: #9a968d;
+  --accent: #6fa8dc;
+  --accent-soft: rgba(111, 168, 220, 0.14);
+  --toggle-bg: #3a3a3d;
+  --toggle-knob: #f3f1ec;
+  --shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25);
+  --footer: #6b6862;
+  --divider-line: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] {
+  --bg: #f6f3ec;
+  --bg-elevated: #ffffff;
+  --text: #1c1a16;
+  --subtext: #746f64;
+  --accent: #2f6fa9;
+  --accent-soft: rgba(47, 111, 169, 0.10);
+  --toggle-bg: #d9d3c4;
+  --toggle-knob: #2a2723;
+  --shadow: 0 0.75rem 1.75rem rgba(30, 25, 10, 0.12);
+  --shadow-sm: 0 0.5rem 1.25rem rgba(30, 25, 10, 0.08);
+  --footer: #a39c8c;
+  --divider-line: rgba(0, 0, 0, 0.08);
+  --card-border: rgba(0, 0, 0, 0.08);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh; /* Mengikuti tinggi dinamis layar mobile tanpa terpotong address bar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem 4rem;
+  transition: background 0.35s, color 0.35s;
+  position: relative;
+}
+
+/* grain halus doang, gak pakai radial glow lagi biar background flat */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+* { cursor: none; } /* hide default */
+*, *:hover { cursor: none; }
+
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+  width: 1rem; height: 1rem;
+  background: var(--accent);
+  transition: width .15s, height .15s, opacity .2s, transform .1s;
+}
+
+.cursor-ring {
+  width: 3rem; height: 3rem;
+  border: 0.09375rem solid color-mix(in srgb, var(--accent) 55%, transparent);
+  transition:
+    width .25s cubic-bezier(.23, 1, .32, 1),
+    height .25s cubic-bezier(.23, 1, .32, 1),
+    border-radius .25s,
+    opacity .2s;
+}
+
+.cursor-dot.hovering  { width: 0.75rem; height: 0.75rem; opacity: 0.4; }
+.cursor-ring.hovering {
+  width: 3.625rem; height: 3.625rem;
+  border-radius: 0.375rem;
+  border-color: color-mix(in srgb, var(--accent) 85%, transparent);
+}
+
+.cursor-ripple {
+  position: fixed;
+  width: 0; height: 0;
+  border-radius: 50%;
+  border: 0.09375rem solid color-mix(in srgb, var(--accent) 60%, transparent);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  animation: ripple-out .6s cubic-bezier(.2, .8, .4, 1) forwards;
+}
+
+@keyframes ripple-out {
+  to {
+    width: 6.25rem; height: 6.25rem;
+    opacity: 0;
+  }
+}
+
+/* - Toggle (Pojok Kiri) - */
+.toggle-wrap {
+  position: fixed;
+  top: 0.95rem;
+  left: 0.75rem; /* Pindah dari right ke left */
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.toggle-wrap.toggle-hidden {
+  transform: translateX(-150%); /* Geser ke kiri sampai hilang saat di-scroll */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle-label {
+  font-size: 0.625rem;
+  color: var(--subtext);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color 0.35s;
+}
+
+.toggle {
+  width: 2.25rem;
+  height: 1.25rem;
+  background: var(--toggle-bg);
+  border-radius: 999px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  outline: none;
+  transition: background 0.35s;
+  flex-shrink: 0;
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 0.15625rem;
+  left: 0.15625rem;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  background: var(--toggle-knob);
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(.4, 0, .2, 1), background 0.35s;
+}
+
+[data-theme="light"] .toggle::after {
+  transform: translateX(1rem);
+}
+
+.toggle-icon { font-size: 0.75rem; }
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 31.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 2rem 2rem;
+  border-radius: 1rem;
+  background: var(--bg-elevated);
+  border: 0.0625rem solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+  transition: padding 0.3s ease;
+  animation: fadeUp 0.5s ease both;
+}
+
+/* - Avatar -
+    Ring statis (dua lapis box-shadow), gak ada conic-gradient yang muter. */
+.avatar-wrap {
+  margin-bottom: 1.125rem;
+  position: relative;
+}
+
+.avatar {
+  width: 8.125rem;
+  height: 8.125rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 0 0.1875rem var(--bg), 0 0 0 0.3125rem var(--accent-soft);
+  position: relative;
+  z-index: 1;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.125rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  transition: color 0.35s;
+}
+
+.tagline {
+  font-size: 0.8125rem;
+  color: var(--subtext);
+  text-align: center;
+  max-width: 20rem;
+  margin: 0 auto 0.5rem;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  transition: color 0.35s;
+}
+
+/* - Shared Section Wrapper (Pages / Social / Contact) - */
+.pages-section,
+.links-section,
+.contact-section {
+  width: 100%;
+  margin-top: 1.75rem;
+  animation: fadeUp 0.4s ease both;
+}
+
+.links-section { animation-delay: 0.14s; }
+.contact-section { animation-delay: 0.28s; }
+
+/* - Shared Divider - */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--divider-line);
+  transition: background 0.35s;
+}
+
+.section-label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: color 0.35s;
+}
+
+/* - Page Links (About Me / Blog, dst) - */
+.pages {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.625rem;
+}
+
+.page-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 1rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--card-border);
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  text-align: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  animation: fadeUp 0.4s ease both;
+}
+
+.page-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.page-btn:active { background: var(--accent-soft); }
+
+.page-icon { font-size: 1.25rem; color: var(--accent); }
+
+.page-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pages .page-btn:nth-child(1) { animation-delay: .04s }
+.pages .page-btn:nth-child(2) { animation-delay: .08s }
+.pages .page-btn:nth-child(3) { animation-delay: .12s }
+
+/* - Social Links - */
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.link-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1.125rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--card-border);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  animation: fadeUp 0.4s ease both;
+}
+
+.link-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: var(--shadow);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.link-btn:active { transform: scale(0.98); filter: brightness(0.95); }
+
+.btn-icon {
+  width: 1.625rem;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: 1.0625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  flex: 1;
+}
+
+.btn-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.btn-desc {
+  font-size: 0.71875rem;
+  font-weight: 400;
+  opacity: 0.72;
+  line-height: 1.3;
+}
+
+.btn-arrow {
+  font-size: 1rem;
+  opacity: 0.4;
+  flex-shrink: 0;
+  transition: transform 0.18s, opacity 0.18s;
+}
+
+.link-btn:hover .btn-arrow { transform: translateX(2px); opacity: 0.8; }
+
+/* Social button animation delays */
+.link-btn:nth-child(1) { animation-delay: .08s }
+.link-btn:nth-child(2) { animation-delay: .14s }
+.link-btn:nth-child(3) { animation-delay: .20s }
+.link-btn:nth-child(4) { animation-delay: .26s }
+.link-btn:nth-child(5) { animation-delay: .32s }
+
+/* - Social Button Colors - */
+.btn-github {
+  background: #14141a;
+}
+
+.btn-youtube {
+  background: #a8281f;
+}
+
+.btn-instagram {
+  background: #c1348a;
+}
+
+.btn-threads {
+  background: #1a1a1a;
+}
+
+/* - Contact Links - */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5625rem;
+}
+
+.contact-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1.125rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--card-border);
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  transition: filter 0.15s ease, border-color 0.15s ease;
+}
+
+.contact-btn:hover { 
+  filter: brightness(1.12); 
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.contact-btn:active { filter: brightness(0.92); }
+
+.contact-icon {
+  width: 1.375rem;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  flex: 1;
+}
+
+.contact-platform {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.contact-value {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  opacity: 0.72;
+  line-height: 1.3;
+}
+
+.contact-arrow {
+  font-size: 0.875rem;
+  opacity: 0.4;
+  flex-shrink: 0;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.contact-btn:hover .contact-arrow { transform: translateX(2px); opacity: 0.7; }
+
+/* - Contact Button Colors - */
+.btn-email {
+  background: #1a3c34;
+}
+
+.btn-whatsapp {
+  background: #1d5a34;
+}
+
+.btn-discord {
+  background: #454FBF;
+}
+
+/* - Footer - */
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--footer);
+  letter-spacing: 0.03em;
+  transition: color 0.35s;
+}
+
+/* - Animations - */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* - Mobile: gap kanan-kiri dikecilin - */
+@media (max-width: 30rem) {
+  .card {
+    padding: 2rem 1.125rem 1.75rem;
+  }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Johanes Steven</title>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- - Theme Toggle - -->
+  <div class="toggle-wrap">
+    <span class="toggle-label" id="toggle-label">Dark</span>
+    <button class="toggle" id="theme-toggle" aria-label="Toggle light/dark mode" onclick="toggleTheme()"></button>
+    <span class="toggle-icon" id="toggle-icon">🌙</span>
+  </div>
+
+  <!-- - Main Card - -->
+  <div class="card">
+
+    <!-- Avatar -->
+    <div class="avatar-wrap">
+      <div class="avatar"><img id="profile-avatar" src="" alt="" /></div>
+    </div>
+
+    <h1 class="name" id="profile-name"></h1>
+    <p class="tagline" id="profile-tagline"></p>
+
+    <!-- - Pages Section (isinya di-render dari data.js) - -->
+    <div class="pages-section">
+      <div class="section-divider">
+        <span class="section-label">Pages</span>
+      </div>
+
+      <div class="pages" id="page-links">
+        <!-- entry di-generate otomatis dari PAGE_LINKS di data.js -->
+      </div>
+    </div>
+
+    <!-- - Social Section (isinya di-render dari data.js) - -->
+    <div class="links-section">
+      <div class="section-divider">
+        <span class="section-label">Social</span>
+      </div>
+
+      <div class="links" id="social-links">
+        <!-- entry di-generate otomatis dari SOCIAL_LINKS di data.js -->
+      </div>
+    </div>
+
+    <!-- - Contact Section (isinya di-render dari data.js) - -->
+    <div class="contact-section">
+      <div class="section-divider">
+        <span class="section-label">Contact</span>
+      </div>
+
+      <div class="contact-links" id="contact-links">
+        <!-- entry di-generate otomatis dari CONTACT_LINKS di data.js -->
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer" id="footer-text"></div>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>
