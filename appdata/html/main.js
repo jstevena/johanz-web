@@ -56,13 +56,40 @@ function renderContactLinks() {
   `).join('');
 }
 
-// - Theme Toggle -
+// - Theme (auto detect + manual toggle) -
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const isDark = theme === 'dark';
+  const label = document.getElementById('toggle-label');
+  const icon  = document.getElementById('toggle-icon');
+  if (label) label.textContent = isDark ? 'Dark' : 'Light';
+  if (icon)  icon.textContent  = isDark ? '🌙' : '☀️';
+}
+
 function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  document.getElementById('toggle-label').textContent = isDark ? 'Light' : 'Dark';
-  document.getElementById('toggle-icon').textContent = isDark ? '☀️' : '🌙';
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  applyTheme(next);
+  // user milih manual → simpan, jadi nggak ditimpa auto-detect lagi
+  try { localStorage.setItem('theme', next); } catch (e) {}
+}
+
+function setupTheme() {
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+
+  // sinkronin label/icon dengan tema yang sudah di-set di <head>
+  applyTheme(saved || (mq.matches ? 'dark' : 'light'));
+
+  // ikutin perubahan tema OS/browser secara live, kalau belum pilih manual
+  const onChange = e => {
+    let manual = null;
+    try { manual = localStorage.getItem('theme'); } catch (err) {}
+    if (!manual) applyTheme(e.matches ? 'dark' : 'light');
+  };
+  if (mq.addEventListener) mq.addEventListener('change', onChange);
+  else if (mq.addListener) mq.addListener(onChange); // Safari lama
 }
 
 // - Custom Cursor (desktop only) -
@@ -172,6 +199,7 @@ function setupToggleAutoHide() {
 
 // - Init -
 document.addEventListener('DOMContentLoaded', () => {
+  setupTheme();
   renderProfile();
   renderPageLinks();
   renderSocialLinks();

@@ -36,15 +36,15 @@ services:
   writefreely:
     <<: *common-keys
     container_name: writefreely
-    image: writeas/writefreely:latest
+    build: ./appdata/writefreely
     cpus: 0.25
     mem_limit: 128m
     ports:
       - "172.19.0.1:8078:8080"
     volumes:
-      - ./appdata/writefreely/config.ini:/go/config.ini
-      - ./appdata/writefreely/keys:/go/keys
-      - ./appdata/writefreely/data:/go/data
+      - ./appdata/writefreely/config.ini:/opt/writefreely/config.ini
+      - ./appdata/writefreely/keys:/opt/writefreely/keys
+      - ./appdata/writefreely/data:/opt/writefreely/data
 
 ###############################################
 # Dedicated Network

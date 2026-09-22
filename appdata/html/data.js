@@ -13,7 +13,7 @@ const PAGE_LINKS = [
     title: "About Me"
   },
   {
-    href: "../under-construction",
+    href: "https://blog.johanz.my.id",
     icon: "fa-solid fa-blog",
     title: "Blog"
   }
