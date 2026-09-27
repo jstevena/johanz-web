@@ -17,7 +17,7 @@ function renderPageLinks() {
   if (!container) return;
 
   container.innerHTML = PAGE_LINKS.map(entry => `
-    <a href="${entry.href}" target="_blank" rel="noopener noreferrer" class="page-btn">
+    <a href="${entry.href}" ${entry.newTab ? 'target="_blank" rel="noopener noreferrer"' : ''} class="page-btn">
       <span class="page-icon"><i class="${entry.icon}"></i></span>
       <span class="page-title">${entry.title}</span>
     </a>

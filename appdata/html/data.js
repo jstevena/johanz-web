@@ -15,7 +15,8 @@ const PAGE_LINKS = [
   {
     href: "https://blog.johanz.my.id",
     icon: "fa-solid fa-blog",
-    title: "Blog"
+    title: "Blog",
+	newTab: true
   }
 ];
 
