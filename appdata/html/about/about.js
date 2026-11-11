@@ -5,11 +5,19 @@ function renderAbout() {
   $('hero-title').textContent = ABOUT.headline;
   $('hero-intro').innerHTML = ABOUT.intro.map(t => `<p>${t}</p>`).join('');
 
-  $('creative-skills').innerHTML = CREATIVE_SKILLS.map(s => `
+  const markHTML = s => `<span class="tool-mark" style="background:${s.bg};color:${s.fg}">${s.abbr}</span>`;
+  $('creative-skills').innerHTML = CREATIVE_SKILLS.map((s, i) => `
     <div class="tool">
-      <span class="tool-mark" style="background:${s.bg};color:${s.fg}">${s.abbr}</span>
+      ${s.icon ? `<img class="tool-icon" data-i="${i}" src="${s.icon}" alt="${s.title}" loading="lazy" />` : markHTML(s)}
       <div><span class="tool-title">${s.title}</span><span class="tool-desc">${s.desc}</span></div>
     </div>`).join('');
+
+  // kalau file png belum ada, balik ke kotak abbr
+  document.querySelectorAll('.tool-icon').forEach(img => {
+    img.addEventListener('error', () => {
+      img.outerHTML = markHTML(CREATIVE_SKILLS[img.dataset.i]);
+    }, { once: true });
+  });
 
   $('network-slots').innerHTML = NETWORK_SLOTS.map(s => `
     <div class="slot">${s.img
