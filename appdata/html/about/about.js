@@ -21,12 +21,12 @@ function renderAbout() {
 }
 
 // Thumbnail dulu, iframe baru dimuat saat diklik (hemat bandwidth + privasi)
-function videoItem(v, feature) {
+function videoItem(v) {
   return `
-    <div class="${feature ? 'video-feature' : 'video-item'}">
+    <div class="video-item">
       <div class="video-frame" data-id="${v.id}">
         <button class="video-thumb" aria-label="Play: ${v.title || 'video'}"
-                style="background-image:url('https://i.ytimg.com/vi/${v.id}/${feature ? 'maxresdefault' : 'hqdefault'}.jpg')">
+                style="background-image:url('https://i.ytimg.com/vi/${v.id}/hqdefault.jpg')">
           <i class="fa-solid fa-play"></i>
         </button>
       </div>
@@ -41,8 +41,7 @@ function renderVideos() {
     area.innerHTML = '<p class="video-empty">Videos coming soon. For now, the archive is on YouTube.</p>';
     return;
   }
-  area.innerHTML = videoItem(list[0], true) +
-    (list.length > 1 ? `<div class="video-rest">${list.slice(1).map(v => videoItem(v, false)).join('')}</div>` : '');
+  area.innerHTML = `<div class="video-grid">${list.map(videoItem).join('')}</div>`;
 
   area.addEventListener('click', e => {
     const btn = e.target.closest('.video-thumb');

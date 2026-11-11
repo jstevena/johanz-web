@@ -75,15 +75,12 @@
   background: #a8281f;
   font-size: 0.875rem;
 }
-.video-feature .video-thumb i { width: 4.25rem; height: 3rem; font-size: 1.25rem; border-radius: 0.875rem; }
 .video-title { display: block; margin-top: 0.625rem; font-size: 0.75rem; font-weight: 600; line-height: 1.4; }
-.video-feature .video-title { font-family: 'Montserrat', sans-serif; font-size: 1.0625rem; margin-top: 0.875rem; }
 
-.video-rest {
+.video-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1rem;
 }
 .video-empty { text-align: center; font-size: 0.8125rem; color: var(--subtext); padding: 2rem 0; }
 
@@ -141,5 +138,5 @@
 @media (max-width: 48rem) {
   .hero { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 1.5rem; margin-bottom: 2.5rem; }
   .hero-title { font-size: 1.5rem; }
-  .video-rest { grid-template-columns: 1fr; }
+  .video-grid { grid-template-columns: 1fr; }
 }
