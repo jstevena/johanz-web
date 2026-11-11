@@ -95,10 +95,10 @@ const CREATIVE_SKILLS = [
 // Isi id = bagian setelah ?v= di link YouTube (contoh: dQw4w9WgXcQ)
 // Entry tanpa id otomatis dilewati.
 const VIDEOS = [
-  { id: "", title: "Judul video 1" },
-  { id: "", title: "Judul video 2" },
-  { id: "", title: "Judul video 3" },
-  { id: "", title: "Judul video 4" }
+  { id: "Ds6igBIVl0Y", title: "VFX Augmented Hologram Phone" },
+  { id: "yHVj1tUAKI", title: "Short Movie Pulang Kampung Rindu" },
+  { id: "jKxPYecN_2U", title: "After Movie PMK UPI 2025" },
+  { id: "hSRvOoffRB0", title: "Video Edukasi Pilah Sampah" }
 ];
 const VIDEO_CHANNEL = "https://www.youtube.com/@johanes_steven_a";
 
