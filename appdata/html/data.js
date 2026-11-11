@@ -96,7 +96,7 @@ const CREATIVE_SKILLS = [
 // Entry tanpa id otomatis dilewati.
 const VIDEOS = [
   { id: "Ds6igBIVl0Y", title: "VFX Augmented Hologram Phone" },
-  { id: "yHVj1tUAKI", title: "Short Movie Pulang Kampung Rindu" },
+  { id: "_yHVj1tUAKI", title: "Short Movie Pulang Kampung Rindu" },
   { id: "jKxPYecN_2U", title: "After Movie PMK UPI 2025" },
   { id: "hSRvOoffRB0", title: "Video Edukasi Pilah Sampah" }
 ];
