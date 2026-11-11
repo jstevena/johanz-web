@@ -81,15 +81,16 @@ const CONTACT_LINKS = [
 const ABOUT = {
   headline: "I make videos, run the live side of events, and keep a home network alive.",
   intro: [
-    "Editing is where I started: short films, event after movies, and the occasional VFX experiment I'm not sure I'm qualified for. (I honestly only open Adobe apps once a year, lol)",
+    "Editing is where I started: short films, event after movies, and the occasional VFX experiment I'm not sure I'm qualified for.",
+	"I honestly only open Adobe apps once a year, lol",
     "Outside of that I'm deep in networking and self-hosting. That part lives on the blog."
   ]
 };
 
 // icon = file .png (taruh di assets/icons/). Kalau file belum ada, otomatis jatuh ke kotak abbr berwarna (bg/fg).
 const CREATIVE_SKILLS = [
-  { icon: "../assets/icons/premiere-pro.png", abbr: "Pr", bg: "#1f1147", fg: "#ea77ff", title: "Premiere Pro",  desc: "Main editing tool" },
-  { icon: "../assets/icons/after-effects.png", abbr: "Ae", bg: "#161040", fg: "#9999ff", title: "After Effects", desc: "Motion & VFX, still learning" },
+  { icon: "../assets/icons/premiere-pro.png", abbr: "Pr", bg: "#1f1147", fg: "#ea77ff", title: "Premiere Pro",  desc: "Main editing tool, still learning" },
+  { icon: "../assets/icons/after-effects.png", abbr: "Ae", bg: "#161040", fg: "#9999ff", title: "After Effects", desc: "Motion & VFX, still newbie" },
   { icon: "../assets/icons/obs-studio.png", abbr: "Ob", bg: "#222226", fg: "#e8e8ea", title: "OBS Studio",    desc: "Streaming & recording" },
   { icon: "../assets/icons/propresenter.png", abbr: "Pp", bg: "#0f2f4a", fg: "#6fb3e0", title: "ProPresenter",  desc: "Live event presentation" }
 ];
