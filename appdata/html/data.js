@@ -79,21 +79,22 @@ const CONTACT_LINKS = [
 
 // - About page (about/index.html) -
 const ABOUT = {
+  headline: "I make videos, run the live side of events, and keep a home network alive.",
   intro: [
-    "Hi, I'm Johanes. I edit videos, run live production stuff, and tinker with my home network more than I should.",
-    "This page is the creative side. The nerdy side lives on the blog."
+    "Editing is where I started: short films, event after movies, and the occasional VFX experiment I'm not sure I'm qualified for.",
+    "Outside of that I'm deep in networking and self-hosting. That part lives on the blog."
   ]
 };
 
+// abbr = teks di kotak (bukan logo resmi), bg/fg = warna kotak
 const CREATIVE_SKILLS = [
-  { icon: "fa-solid fa-film",                 title: "Premiere Pro",  desc: "Video editing" },
-  { icon: "fa-solid fa-wand-magic-sparkles",  title: "After Effects", desc: "Motion graphics, still learning" },
-  { icon: "fa-solid fa-circle-dot",           title: "OBS Studio",    desc: "Streaming & recording" },
-  { icon: "fa-solid fa-display",              title: "ProPresenter",  desc: "Live event presentation" }
+  { abbr: "Pr", bg: "#1f1147", fg: "#ea77ff", title: "Premiere Pro",  desc: "Main editing tool" },
+  { abbr: "Ae", bg: "#161040", fg: "#9999ff", title: "After Effects", desc: "Motion & VFX, still learning" },
+  { abbr: "Ob", bg: "#222226", fg: "#e8e8ea", title: "OBS Studio",    desc: "Streaming & recording" },
+  { abbr: "Pp", bg: "#0f2f4a", fg: "#6fb3e0", title: "ProPresenter",  desc: "Live event presentation" }
 ];
 
-// Isi id = bagian setelah ?v= di link YouTube (contoh: dQw4w9WgXcQ)
-// Entry tanpa id otomatis dilewati.
+// video pertama = featured (besar), sisanya kecil di bawahnya
 const VIDEOS = [
   { id: "Ds6igBIVl0Y", title: "VFX Augmented Hologram Phone" },
   { id: "_yHVj1tUAKI", title: "Short Movie Pulang Kampung Rindu" },
@@ -103,3 +104,9 @@ const VIDEOS = [
 const VIDEO_CHANNEL = "https://www.youtube.com/@johanes_steven_a";
 
 const NETWORK_STACK = ["OpenWrt", "VLAN", "Traefik", "Cloudflare Tunnel", "AdGuard Home", "Docker", "Jellyfin"];
+
+// img: isi path gambar (misal "../assets/topologi.png") kalau sudah ada
+const NETWORK_SLOTS = [
+  { title: "Network topology", img: "" },
+  { title: "Homepage dashboard", img: "" }
+];

@@ -28,39 +28,41 @@
     <span class="toggle-icon" id="toggle-icon">🌙</span>
   </div>
 
-  <div class="card about-card">
+  <main class="about-wrap">
 
-    <div class="avatar-wrap">
+    <header class="hero">
       <div class="avatar"><img src="../assets/pic.jpg" alt="Johanes Steven" /></div>
-    </div>
-    <h1 class="name">About Me</h1>
-    <div class="about-intro" id="about-intro"></div>
+      <div class="hero-text">
+        <h1 class="hero-title" id="hero-title"></h1>
+        <div class="hero-intro" id="hero-intro"></div>
+      </div>
+    </header>
 
-    <div class="about-section">
-      <div class="section-divider"><span class="section-label">Creative</span></div>
-      <div class="pages skills" id="creative-skills"></div>
-    </div>
-
-    <div class="about-section">
+    <section class="block">
       <div class="section-divider"><span class="section-label">Videos</span></div>
-      <div class="video-grid" id="video-grid"></div>
+      <div id="video-area"></div>
       <a class="more-link" id="video-more" target="_blank" rel="noopener noreferrer">
         <i class="fa-brands fa-youtube"></i> More on YouTube
       </a>
-    </div>
+    </section>
 
-    <div class="about-section">
+    <section class="block">
+      <div class="section-divider"><span class="section-label">Tools</span></div>
+      <div class="tools" id="creative-skills"></div>
+    </section>
+
+    <section class="block">
       <div class="section-divider"><span class="section-label">Networking</span></div>
+      <div class="slots" id="network-slots"></div>
       <div class="chips" id="network-stack"></div>
-      <p class="about-note">Home network, self-hosting and the occasional broken config. I write about it on the blog.</p>
-    </div>
+    </section>
 
-    <div class="pages back-row">
+    <nav class="end-row">
       <a href="../" class="page-btn"><span class="page-icon"><i class="fa-solid fa-arrow-left"></i></span><span class="page-title">Back</span></a>
       <a href="https://blog.johanz.my.id" target="_blank" rel="noopener noreferrer" class="page-btn"><span class="page-icon"><i class="fa-solid fa-blog"></i></span><span class="page-title">Blog</span></a>
-    </div>
+    </nav>
 
-  </div>
+  </main>
 
   <div class="footer" id="footer-text"></div>
 
