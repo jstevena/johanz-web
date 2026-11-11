@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me · Johanz</title>
+
+  <!-- anti-flicker -->
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <link rel="icon" type="image/png" href="../favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="about.css" />
+</head>
+<body>
+
+  <div class="toggle-wrap">
+    <span class="toggle-label" id="toggle-label">Dark</span>
+    <button class="toggle" id="theme-toggle" aria-label="Toggle light/dark mode" onclick="toggleTheme()"></button>
+    <span class="toggle-icon" id="toggle-icon">🌙</span>
+  </div>
+
+  <div class="card about-card">
+
+    <div class="avatar-wrap">
+      <div class="avatar"><img src="../assets/pic.jpg" alt="Johanes Steven" /></div>
+    </div>
+    <h1 class="name">About Me</h1>
+    <div class="about-intro" id="about-intro"></div>
+
+    <div class="about-section">
+      <div class="section-divider"><span class="section-label">Creative</span></div>
+      <div class="pages skills" id="creative-skills"></div>
+    </div>
+
+    <div class="about-section">
+      <div class="section-divider"><span class="section-label">Videos</span></div>
+      <div class="video-grid" id="video-grid"></div>
+      <a class="more-link" id="video-more" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-youtube"></i> More on YouTube
+      </a>
+    </div>
+
+    <div class="about-section">
+      <div class="section-divider"><span class="section-label">Networking</span></div>
+      <div class="chips" id="network-stack"></div>
+      <p class="about-note">Home network, self-hosting and the occasional broken config. I write about it on the blog.</p>
+    </div>
+
+    <div class="pages back-row">
+      <a href="../" class="page-btn"><span class="page-icon"><i class="fa-solid fa-arrow-left"></i></span><span class="page-title">Back</span></a>
+      <a href="https://blog.johanz.my.id" target="_blank" rel="noopener noreferrer" class="page-btn"><span class="page-icon"><i class="fa-solid fa-blog"></i></span><span class="page-title">Blog</span></a>
+    </div>
+
+  </div>
+
+  <div class="footer" id="footer-text"></div>
+
+  <script src="../data.js"></script>
+  <script src="../main.js"></script>
+  <script src="about.js"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@ const PROFILE = {
 const PAGE_LINKS = [
   {
 //    href: "https://about.johanz.my.id",
-    href: "../under-construction",
+    href: "about/",
     icon: "fa-solid fa-user",
     title: "About Me"
   },
@@ -76,3 +76,30 @@ const CONTACT_LINKS = [
     className: "btn-discord"
   }
 ];
+
+// - About page (about/index.html) -
+const ABOUT = {
+  intro: [
+    "Hi, I'm Johanes. I edit videos, run live production stuff, and tinker with my home network more than I should.",
+    "This page is the creative side. The nerdy side lives on the blog."
+  ]
+};
+
+const CREATIVE_SKILLS = [
+  { icon: "fa-solid fa-film",                 title: "Premiere Pro",  desc: "Video editing" },
+  { icon: "fa-solid fa-wand-magic-sparkles",  title: "After Effects", desc: "Motion graphics, still learning" },
+  { icon: "fa-solid fa-circle-dot",           title: "OBS Studio",    desc: "Streaming & recording" },
+  { icon: "fa-solid fa-display",              title: "ProPresenter",  desc: "Live event presentation" }
+];
+
+// Isi id = bagian setelah ?v= di link YouTube (contoh: dQw4w9WgXcQ)
+// Entry tanpa id otomatis dilewati.
+const VIDEOS = [
+  { id: "", title: "Judul video 1" },
+  { id: "", title: "Judul video 2" },
+  { id: "", title: "Judul video 3" },
+  { id: "", title: "Judul video 4" }
+];
+const VIDEO_CHANNEL = "https://www.youtube.com/@johanes_steven_a";
+
+const NETWORK_STACK = ["OpenWrt", "VLAN", "Traefik", "Cloudflare Tunnel", "AdGuard Home", "Docker", "Jellyfin"];
