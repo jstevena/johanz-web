@@ -79,9 +79,9 @@ const CONTACT_LINKS = [
 
 // - About page (about/index.html) -
 const ABOUT = {
-  headline: "I make videos, run the live side of events, and keep a home network alive.",
+  headline: "I edit videos, run the live side of events, and keep a home network alive.",
   intro: [
-    "Editing is where I started: short films, event after movies, and the occasional VFX experiment I'm not sure I'm qualified for.",
+    "Short films, event after movies, and the occasional VFX experiment I'm not sure I'm qualified for.",
 	"I honestly only open Adobe apps once a year, lol",
     "Outside of that I'm deep in networking and self-hosting. That part lives on the blog."
   ]
