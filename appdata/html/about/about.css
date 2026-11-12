@@ -14,6 +14,13 @@
   gap: 2.5rem;
   align-items: center;
   margin-bottom: 3.5rem;
+  /* kotak ala card di halaman utama */
+  padding: 2.5rem;
+  border-radius: 1rem;
+  background: var(--bg-elevated);
+  border: 0.0625rem solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+  animation: fadeUp 0.5s ease both;
 }
 .hero .avatar { width: 10rem; height: 10rem; }
 .hero-title {
@@ -142,7 +149,7 @@
 .end-row .page-btn { flex: 1; }
 
 @media (max-width: 48rem) {
-  .hero { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .hero { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 1.5rem; margin-bottom: 2.5rem; padding: 2rem 1.125rem 1.75rem; }
   .hero-title { font-size: 1.5rem; }
   .video-grid { grid-template-columns: 1fr; }
 }
