@@ -107,6 +107,6 @@ const NETWORK_STACK = ["OpenWrt", "VLAN", "Traefik", "Cloudflare Tunnel", "AdGua
 
 // img: isi path gambar (misal "../assets/topologi.png") kalau sudah ada
 const NETWORK_SLOTS = [
-  { title: "Network topology", img: "" },
+  { title: "Network topology", img: "../assets/topologi.png" },
   { title: "Homepage dashboard", img: "../assets/homepage.png" }
 ];
